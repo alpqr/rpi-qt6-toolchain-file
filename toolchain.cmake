@@ -21,15 +21,13 @@ set(CMAKE_CXX_COMPILER ${CROSS_COMPILER}/arm-linux-gnueabihf-g++)
 
 set(QT_COMPILER_FLAGS "-march=armv7-a -mfpu=neon -mfloat-abi=hard")
 set(QT_COMPILER_FLAGS_RELEASE "-O2 -pipe")
-#set(QT_LINKER_FLAGS "-Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed")
-set(QT_LINKER_FLAGS "-Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -Wl,-rpath-link,${TARGET_SYSROOT}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${TARGET_SYSROOT}/lib/arm-linux-gnueabihf")
+set(QT_COMPILER_FLAGS_RELWITHDEBINFO "-O2 -pipe")
+set(QT_LINKER_FLAGS "-Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed")
 
-set(QT_LIB_DIRS "${CMAKE_SYSROOT}/lib;${CMAKE_SYSROOT}/../qt6/lib")
+set(QT_LIB_DIRS "${CMAKE_SYSROOT}/lib;${CMAKE_SYSROOT}/lib/arm-linux-gnueabihf;${CMAKE_SYSROOT}/usr/lib/arm-linux-gnueabihf;${CMAKE_SYSROOT}/../qt6/lib")
 foreach(QT_LIB_DIR ${QT_LIB_DIRS})
     string(APPEND QT_LINKER_FLAGS " -L${QT_LIB_DIR} -Wl,-rpath-link,${QT_LIB_DIR}")
 endforeach()
-
-message("${QT_LINKER_FLAGS}")
 
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
