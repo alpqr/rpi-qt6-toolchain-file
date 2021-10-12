@@ -1,0 +1,6 @@
+cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DINPUT_opengl=es2 -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF \
+ -DCMAKE_TOOLCHAIN_FILE=/home/agocs/rpi/toolchain.cmake \
+ -DQT_HOST_PATH=/home/agocs/qtbase \
+ -DCMAKE_INSTALL_PREFIX=/usr/local/qt6 \
+ -DCMAKE_STAGING_PREFIX=/home/agocs/rpi/qt6 \
+ .
